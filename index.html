@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cards de Cadastro</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/daisyui@3.8.1/dist/full.js"></script>
+
+  <!-- (Opcional) Forçar tema escuro -->
+  <script>
+    tailwind.config = {
+      darkMode: "class", // permite usar .dark em <html> ou <body>
+    };
+  </script>
+</head>
+<body class="bg-[#2B1C28] min-h-screen flex items-center justify-center p-8">
+  <div class="flex flex-col md:flex-row gap-12 max-w-5xl w-full">
+
+    <!-- Card de Cadastro -->
+    <div class="border-4 border-[#48852D] rounded-2xl card flex-1 bg-[rgba(128,128,128,0.2)] text-base-content shadow-lg hover:shadow-xl transition duration-300">
+      <div class="card-body">
+        <h2 class="card-title text-3xl px-8 py-5 font-bold mb-4 text-[#6ECC45]">Cadastro</h2>
+        <form class="space-y-4">
+<div class="form-control ml-6 group transition-all duration-300 ">
+  <label class="label transition-colors duration-300 group-hover:text-[#6ECC45]">
+    <span class="label-text font-medium text-white">Digite seu nome:</span>
+  </label>
+  <input
+    type="text"
+    class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white
+           bg-[rgba(128,128,128,0.2)] border-white
+           group-hover:border-[#6ECC45] transition-all duration-300"
+  />
+</div>
+
+<div class="form-control ml-6 group transition-all duration-300">
+  <label class="label transition-colors duration-300 group-hover:text-[#FFD700]">
+    <span class="label-text font-medium text-white">Digite seu E-mail:</span>
+  </label>
+  <input
+    type="email"
+    class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white
+           bg-[rgba(128,128,128,0.2)] border-white
+           group-hover:border-[#FFD700] transition-all duration-300"
+  />
+</div>
+
+<div class="form-control ml-6 group transition-all duration-300">
+  <label class="label transition-colors duration-300 group-hover:text-[#4682B4]">
+    <span class="label-text font-medium text-white">Digite seu Telefone (Whatsapp):</span>
+  </label>
+  <input
+    type="tel"
+    class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white
+           bg-[rgba(128,128,128,0.2)] border-white
+           group-hover:border-[#4682B4] transition-all duration-300"
+  />
+</div>
+
+</form>
+      </div>
+    </div>
+
+    <!-- Card de Sucesso -->
+    <div class="card flex-1 bg-[rgba(128,128,128,0.2)] text-base-content border-4 border-[#D4D347] shadow-lg hover:shadow-xl transition duration-300 rounded-2xl">
+       <div class="card-body items-center text-center justify-center">
+    <!-- Título com margem para afastar mais para baixo -->
+<h2 class="card-title text-3xl font-bold mb-6 px-10 text-[#E0DF4B] mt-10">Sucesso!</h2>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-[#E0DF4B] animate-bounce mt-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+</svg>
+
+    <!-- Texto com a mesma cor da borda -->
+    <p class="text-xl mb-4  px-8 py10  text-[#E0DF4B]">Link enviado com sucesso.</p>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+    </div>
+
+  </div>
+</body>
+</html>
