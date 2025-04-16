@@ -3,85 +3,235 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cards de Cadastro</title>
-  <!-- Tailwind CSS -->
+  <title>Cards de Cadastro Compactos</title>
+  <!-- Tailwind CSS + DaisyUI via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- DaisyUI via CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/daisyui@3.8.1/dist/full.js"></script>
-
-  <!-- (Opcional) Forçar tema escuro -->
   <script>
     tailwind.config = {
-      darkMode: "class", // permite usar .dark em <html> ou <body>
+      plugins: [require('daisyui')],
+      daisyui: {
+        themes: ["light", "dark"],
+      },
     };
   </script>
 </head>
-<body class="bg-[#2B1C28] min-h-screen flex items-center justify-center p-8">
-  <div class="flex flex-col md:flex-row gap-12 max-w-5xl w-full">
-
-    <!-- Card de Cadastro -->
-    <div class="border-4 border-[#48852D] rounded-2xl card flex-1 bg-[rgba(128,128,128,0.2)] text-base-content shadow-lg hover:shadow-xl transition duration-300">
-      <div class="card-body">
-        <h2 class="card-title text-3xl px-8 py-5 font-bold mb-4 text-[#6ECC45]">Cadastro</h2>
-        <form class="space-y-4">
-<div class="form-control ml-6 group transition-all duration-300 ">
-  <label class="label transition-colors duration-300 group-hover:text-[#6ECC45]">
-    <span class="label-text font-medium text-white">Digite seu nome:</span>
-  </label>
-  <input
-    type="text"
-    class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white
-           bg-[rgba(128,128,128,0.2)] border-white
-           group-hover:border-[#6ECC45] transition-all duration-300"
-  />
-</div>
-
-<div class="form-control ml-6 group transition-all duration-300">
-  <label class="label transition-colors duration-300 group-hover:text-[#FFD700]">
-    <span class="label-text font-medium text-white">Digite seu E-mail:</span>
-  </label>
-  <input
-    type="email"
-    class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white
-           bg-[rgba(128,128,128,0.2)] border-white
-           group-hover:border-[#FFD700] transition-all duration-300"
-  />
-</div>
-
-<div class="form-control ml-6 group transition-all duration-300">
-  <label class="label transition-colors duration-300 group-hover:text-[#4682B4]">
-    <span class="label-text font-medium text-white">Digite seu Telefone (Whatsapp):</span>
-  </label>
-  <input
-    type="tel"
-    class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white
-           bg-[rgba(128,128,128,0.2)] border-white
-           group-hover:border-[#4682B4] transition-all duration-300"
-  />
-</div>
-
-</form>
+<body class="bg-[#2B1C28] min-h-screen flex items-center justify-center p-4 md:p-8">
+  <div class="flex flex-col md:flex-row gap-6 md:gap-8 max-w-4xl w-full">
+    <!-- Card de Cadastro - Versão compacta -->
+    <div id="cadastroCard" class="card flex-1 w-full md:w-[360px] h-[460px] bg-[rgba(128,128,128,0.2)] text-base-content border-4 border-[#48852D] rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+      <div class="card-body flex flex-col justify-between h-full">
+        <div>
+          <h2 class="card-title text-3xl md:text-3xl font-bold mb-4 text-[#6ECC45] text-center">Cadastro</h2>
+          <form id="formCadastro" class="space-y-4" novalidate>
+            <div class="form-control ml-6 group transition-all duration-300">
+              <label class="label transition-colors duration-300 group-hover:text-[#6ECC45]">
+                <span class="label-text font-medium text-white">Digite seu nome:</span>
+              </label>
+              <input 
+                type="text" 
+                id="nome"
+                name="nome"
+                placeholder="Seu nome completo" 
+                class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white bg-[rgba(128,128,128,0.2)] border-white group-hover:border-[#6ECC45] transition-all duration-300" 
+                required
+                minlength="3"
+                aria-describedby="nome-error"
+              />
+              <div id="nome-error" class="text-red-100 text-xs mt-1 hidden">Mínimo 3 caracteres</div>
+            </div>
+            
+            <div class="form-control ml-6 group transition-all duration-300">
+              <label class="label transition-colors duration-300 group-hover:text-[#FFD700]">
+                <span class="label-text font-medium text-white">Digite seu E-mail:</span>
+              </label>
+              <input 
+                type="email" 
+                id="email"
+                name="email"
+                placeholder="seu@email.com" 
+                class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white bg-[rgba(128,128,128,0.2)] border-white group-hover:border-[#FFD700] transition-all duration-300" 
+                required
+                aria-describedby="email-error"
+              />
+              <div id="email-error" class="text-red-100 text-xs mt-1 hidden">E-mail inválido</div>
+            </div>
+            
+            <div class="form-control ml-6 group transition-all duration-300">
+              <label class="label transition-colors duration-300 group-hover:text-[#4682B4]">
+                <span class="label-text font-medium text-white">Digite seu Telefone (Whatsapp):</span>
+              </label>
+              <input 
+                type="tel" 
+                id="telefone"
+                name="telefone"
+                placeholder="(00) 00000-0000" 
+                class="input w-full px-4 py-3 border-[2.5px] rounded-xl text-white placeholder-white bg-[rgba(128,128,128,0.2)] border-white group-hover:border-[#4682B4] transition-all duration-300" 
+                required
+                pattern="^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$"
+                aria-describedby="telefone-error"
+              />
+              <div id="telefone-error" class="text-red-100 text-xs mt-1 hidden">Telefone inválido</div>
+            </div>
+          </form>
+        </div>
+        
+        <div class="mt-auto">
+          <div class="form-control mt-4">
+            <button 
+              type="submit" 
+              id="submitBtn"
+              form="formCadastro"
+              class="w-full bg-white text-[#48852D] font-bold py-2 text-sm rounded-xl shadow hover:bg-[#6ECC45] hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <span id="submitText">Enviar</span>
+              <svg id="loadingSpinner" class="hidden w-4 h-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+          <p class="text-xs text-[#6ECC45] text-center mt-3">* Campos obrigatórios</p>
+        </div>
       </div>
     </div>
 
-    <!-- Card de Sucesso -->
-    <div class="card flex-1 bg-[rgba(128,128,128,0.2)] text-base-content border-4 border-[#D4D347] shadow-lg hover:shadow-xl transition duration-300 rounded-2xl">
-       <div class="card-body items-center text-center justify-center">
-    <!-- Título com margem para afastar mais para baixo -->
-<h2 class="card-title text-3xl font-bold mb-6 px-10 text-[#E0DF4B] mt-10">Sucesso!</h2>
-
-<svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-[#E0DF4B] animate-bounce mt-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-</svg>
-
-    <!-- Texto com a mesma cor da borda -->
-    <p class="text-xl mb-4  px-8 py10  text-[#E0DF4B]">Link enviado com sucesso.</p>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-    </svg>
-  </div>
+    <!-- Card de Sucesso - Versão compacta -->
+    <div id="sucessoCard" class="hidden card flex-1 w-full md:w-[360px] h-[460px] bg-[rgba(128,128,128,0.2)] text-base-content border-4 border-[#D4D347] rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+      <div class="card-body flex flex-col items-center justify-center h-full">
+        <div class="animate-fade-in text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-[#D4D347] mb-4 animate-check mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <h2 class="card-title text-2xl font-bold mb-2 text-[#D4D347]">Cadastro Concluído!</h2>
+          <p class="text-base mb-4 text-[#D4D347]">Dados enviados com sucesso.</p>
+          <button 
+            id="voltarBtn" 
+            class="bg-white text-[#D4D347] font-bold py-2 px-5 text-sm rounded-md shadow hover:bg-[#E0DF4B] transition-all duration-300"
+            aria-label="Voltar ao formulário de cadastro"
+          >
+            Voltar
+          </button>
+        </div>
+      </div>
     </div>
-
   </div>
+
+  <!-- Script (mantido funcional) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('formCadastro');
+      const cadastroCard = document.getElementById('cadastroCard');
+      const sucessoCard = document.getElementById('sucessoCard');
+      const voltarBtn = document.getElementById('voltarBtn');
+      const submitBtn = document.getElementById('submitBtn');
+      const submitText = document.getElementById('submitText');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      
+      // Máscara para telefone
+      const telefoneInput = document.getElementById('telefone');
+      telefoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 2) {
+          value = `(${value.substring(0,2)}) ${value.substring(2)}`;
+        }
+        if (value.length > 10) {
+          value = `${value.substring(0,10)}-${value.substring(10,14)}`;
+        }
+        e.target.value = value;
+      });
+      
+      // Validação em tempo real
+      form.addEventListener('input', function(e) {
+        const input = e.target;
+        if (input.checkValidity()) {
+          input.classList.remove('border-red-500');
+          input.classList.add('border-green-500');
+          document.getElementById(`${input.id}-error`).classList.add('hidden');
+        } else {
+          input.classList.add('border-red-500');
+          input.classList.remove('border-green-500');
+        }
+      });
+      
+      // Envio do formulário
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        const inputs = form.querySelectorAll('input[required]');
+        
+        inputs.forEach(input => {
+          if (!input.checkValidity()) {
+            isValid = false;
+            input.classList.add('border-red-500');
+            document.getElementById(`${input.id}-error`).classList.remove('hidden');
+          }
+        });
+        
+        if (!isValid) return;
+        
+        try {
+          submitText.textContent = 'Enviando...';
+          loadingSpinner.classList.remove('hidden');
+          submitBtn.disabled = true;
+          
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          cadastroCard.classList.add('hidden');
+          sucessoCard.classList.remove('hidden');
+          
+        } catch (error) {
+          console.error('Erro no envio:', error);
+          alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+        } finally {
+          submitText.textContent = 'Enviar';
+          loadingSpinner.classList.add('hidden');
+          submitBtn.disabled = false;
+        }
+      });
+      
+      voltarBtn.addEventListener('click', function() {
+        sucessoCard.classList.add('hidden');
+        cadastroCard.classList.remove('hidden');
+        form.reset();
+        
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+          input.classList.remove('border-red-500', 'border-green-500');
+          document.getElementById(`${input.id}-error`).classList.add('hidden');
+        });
+      });
+    });
+  </script>
+  
+  <!-- Estilos ajustados -->
+  <style>
+    @keyframes check {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-check {
+      animation: check 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fade-in 0.4s ease-out forwards;
+    }
+    
+    input:invalid {
+      border-color: #f87171 !important;
+    }
+    
+    input:valid {
+      border-color: #4ade80 !important;
+    }
+  </style>
 </body>
 </html>
